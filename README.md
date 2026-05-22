@@ -1,5 +1,4 @@
 # 🪨 OggMiner
-
 > Custom GPU miner for Oggchain. Built on OggPoW — a custom Go implementation of ProgPoW.
 
 **OggMiner** is a GPU mining worker built specifically for the Oggchain network. It is forked from [progminer](https://github.com/hydnoracoin/progminer) and adjusted to work with **OggPoW** — Oggchain's custom ProgPoW implementation written in Go.
@@ -98,15 +97,21 @@ oggminer.exe -G -P http://rpcuser:rpcpassword@127.0.0.1:18545
 
 ---
 
-## 🔨 Build from Source
 
-See [docs/BUILD.md](docs/BUILD.md) for full build and compilation details.
+### Verified Build Environment
 
-### Prerequisites
+OggMiner has been configured and successfully built with the following tool versions. Using different versions may work but is not guaranteed.
 
-- CMake
-- Visual Studio 2022 (Windows) or GCC (Linux)
-- CUDA Toolkit (for NVIDIA)
+| Tool | Version |
+|---|---|
+| Visual Studio | 2022 |
+| CMake | 3.21 |
+| Perl | v5.42 |
+| CUDA Toolkit | 13.2 |
+| Hunter (C++ pkg manager) | 6.6.0 |
+
+> **Note:** Hunter is used automatically by CMake to download and build C++ dependencies. You do not call it directly — it runs during the `cmake ..` configuration step. The first configure will take several minutes while Hunter fetches and builds all dependencies.
+
 
 ### Windows
 
