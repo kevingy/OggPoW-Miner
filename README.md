@@ -1,4 +1,4 @@
-````md
+
 # 🪨 OggMiner
 
 > Custom GPU miner for Oggchain. Built on OggPoW — a custom Go implementation of ProgPoW.
