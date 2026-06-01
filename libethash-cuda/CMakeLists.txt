@@ -46,8 +46,19 @@ else()
         list(APPEND CUDA_NVCC_FLAGS "-gencode arch=compute_89,code=sm_89")
     endif()
 
-    if(NOT CUDA_VERSION VERSION_LESS 12.0)
+        if(NOT CUDA_VERSION VERSION_LESS 12.0)
         list(APPEND CUDA_NVCC_FLAGS "-gencode arch=compute_90,code=sm_90")
+    endif()
+
+    # NVIDIA Blackwell / RTX 50 series
+    # Requires CUDA Toolkit 12.8+.
+    # RTX 5090 / 5080 / 5070 Ti / 5070 / 5060 Ti / 5060 / 5050 = compute capability 12.0.
+    if(NOT CUDA_VERSION VERSION_LESS 12.8)
+        list(APPEND CUDA_NVCC_FLAGS "-gencode arch=compute_120,code=sm_120")
+
+        # PTX fallback for future GPUs. This may help future architectures JIT,
+        # but true RTX 60 support depends on future CUDA/toolkit support.
+        list(APPEND CUDA_NVCC_FLAGS "-gencode arch=compute_120,code=compute_120")
     endif()
 endif()
 

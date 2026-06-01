@@ -19,13 +19,9 @@ set(SOURCES
 	${CMAKE_CURRENT_BINARY_DIR}/CLMiner_kernel.h
 )
 
-if(APPLE)
-	# On macOS use system OpenCL library.
-	find_package(OpenCL REQUIRED)
-else()
-	hunter_add_package(OpenCL)
-	find_package(OpenCL CONFIG REQUIRED)
-endif()
+# Use system OpenCL instead of Hunter.
+# Windows AMD/OpenCL build should use the OpenCL runtime/headers installed with GPU drivers or SDK.
+find_package(OpenCL REQUIRED)
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 include_directories(..)

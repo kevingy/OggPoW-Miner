@@ -501,7 +501,7 @@
 #if defined(__APPLE__) || defined(__MACOSX)
 #include <OpenCL/opencl.h>
 #else
-#include <CL/opencl.h>
+#include "opencl.h"
 #endif // !__APPLE__
 
 #if (__cplusplus >= 201103L)
