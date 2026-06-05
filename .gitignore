@@ -75,3 +75,8 @@ node_modules/
 # vscode
 .vscode/
 /.vs
+
+# Build output and temporary files
+HunterGate.cmake
+build-cuda-final/
+cmake/HunterGate.cmake

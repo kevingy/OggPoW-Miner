@@ -5,7 +5,7 @@ include(cmake/cable/bootstrap.cmake)
 include(CableBuildInfo)
 include(CableBuildType)
 include(CableToolchains)
-include(HunterGate)
+include(cmake/cable/HunterGate.cmake)
 
 include(defaults/HunterCacheServers)
 
@@ -34,6 +34,11 @@ option(ETHDBUS "Build with D-Bus support" OFF)
 option(APICORE "Build with API Server support" ON)
 option(DEVBUILD "Log developer metrics" OFF)
 
+if (ETHASHCUDA)
+	enable_language(CUDA)
+	find_package(CUDAToolkit REQUIRED)
+endif()
+
 # propagates CMake configuration options to the compiler
 function(configureProject)
 	if (ETHASHCL)
@@ -56,8 +61,10 @@ function(configureProject)
 	endif()
 endfunction()
 
-hunter_add_package(Boost COMPONENTS system filesystem thread)
-find_package(Boost CONFIG REQUIRED COMPONENTS system filesystem thread)
+#hunter_add_package(Boost COMPONENTS system filesystem thread)
+#find_package(Boost CONFIG REQUIRED COMPONENTS system filesystem thread)
+find_package(Boost REQUIRED COMPONENTS filesystem system thread)
+
 
 hunter_add_package(jsoncpp)
 find_package(jsoncpp CONFIG REQUIRED)

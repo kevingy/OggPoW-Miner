@@ -108,8 +108,7 @@ bool CUDAMiner::initEpoch_internal()
            CUdevice device;
             cuDeviceGet(&device, m_deviceDescriptor.cuDeviceIndex);
 
-            CUctxCreateParams ctxParams = {};
-            CU_SAFE_CALL(cuCtxCreate(&m_context, &ctxParams, m_settings.schedule, device));
+            CU_SAFE_CALL(cuCtxCreate(&m_context, m_settings.schedule, device));
 
             // Check whether the current device has sufficient memory every time we recreate the dag
             if (m_deviceDescriptor.totalMemory < RequiredMemory)
